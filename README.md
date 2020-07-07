@@ -1,10 +1,10 @@
-Zelantus Core integration/staging tree
-=====================================
+What is Zelantus?
+----------------
 
 https://zelantus.com
 
-What is Zelantus?
-----------------
+Zelantus is a personal token marketplace. Anybody can create and issue tokens for social media followers, microemployment or just plain fun.
+
 
 Zelantus is an experimental digital currency that enables instant payments to
 anyone, anywhere in the world. Zelantus uses peer-to-peer technology to operate
