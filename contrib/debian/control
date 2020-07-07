@@ -26,7 +26,7 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://zelantus.org/
+Homepage: https://zelantus.com/
 Vcs-Git: git://github.com/ZelantusProject/Zelantus.git
 Vcs-Browser: https://github.com/ZelantusProject/Zelantus
 

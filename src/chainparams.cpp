@@ -184,7 +184,7 @@ public:
 
         vSeeds.emplace_back("seed-zelantus.bitactivate.com", false);
         vSeeds.emplace_back("seed-zelantus.zelantus.com", false);
-        vSeeds.emplace_back("seed-zelantus.zelantus.org", false);
+        vSeeds.emplace_back("seed-zelantus.zelantus.com", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
@@ -402,7 +402,7 @@ public:
 
         vSeeds.emplace_back("seed-testnet-zelantus.bitactivate.com", false);
         vSeeds.emplace_back("seed-testnet-zelantus.zelantus.com", false);
-        vSeeds.emplace_back("seed-testnet-zelantus.zelantus.org", false);
+        vSeeds.emplace_back("seed-testnet-zelantus.zelantus.com", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);

@@ -3,7 +3,7 @@ release-notes at release time)
 
 Zelantus Core version *version* is now available from:
 
-  <https://zelantus.org/bin/zelantus-core-*version*/>
+  <https://zelantus.com/bin/zelantus-core-*version*/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
@@ -14,7 +14,7 @@ Please report bugs using the issue tracker at GitHub:
 
 To receive security and update notifications, please subscribe to:
 
-  <https://zelantus.org/en/list/announcements/join/>
+  <https://zelantus.com/en/list/announcements/join/>
 
 How to Upgrade
 ==============

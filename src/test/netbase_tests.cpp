@@ -89,10 +89,10 @@ BOOST_FIXTURE_TEST_SUITE(netbase_tests, BasicTestingSetup)
     {
         BOOST_TEST_MESSAGE("Running NetBase SplitHost Test");
 
-        BOOST_CHECK(TestSplitHost("www.zelantus.org", "www.zelantus.org", -1));
-        BOOST_CHECK(TestSplitHost("[www.zelantus.org]", "www.zelantus.org", -1));
-        BOOST_CHECK(TestSplitHost("www.zelantus.org:80", "www.zelantus.org", 80));
-        BOOST_CHECK(TestSplitHost("[www.zelantus.org]:80", "www.zelantus.org", 80));
+        BOOST_CHECK(TestSplitHost("www.zelantus.com", "www.zelantus.com", -1));
+        BOOST_CHECK(TestSplitHost("[www.zelantus.com]", "www.zelantus.com", -1));
+        BOOST_CHECK(TestSplitHost("www.zelantus.com:80", "www.zelantus.com", 80));
+        BOOST_CHECK(TestSplitHost("[www.zelantus.com]:80", "www.zelantus.com", 80));
         BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
         BOOST_CHECK(TestSplitHost("127.0.0.1:9617", "127.0.0.1", 9617));
         BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));

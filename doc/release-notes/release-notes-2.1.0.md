@@ -13,7 +13,7 @@ Please report bugs using the issue tracker at GitHub:
 
 To receive security and update notifications, please subscribe to:
 
-  <https://zelantus.org/en/list/announcements/join/>
+  <https://zelantus.com/en/list/announcements/join/>
 
 How to Upgrade
 ==============

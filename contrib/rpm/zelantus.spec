@@ -20,8 +20,8 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://zelantus.org/
-Source0:	https://zelantus.org/bin/zelantus-core-%{version}/zelantus-%{version}.tar.gz
+URL:		https://zelantus.com/
+Source0:	https://zelantus.com/bin/zelantus-core-%{version}/zelantus-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
 Source10:	https://raw.githubusercontent.com/zelantus/zelantus/v%{version}/contrib/debian/examples/zelantus.conf

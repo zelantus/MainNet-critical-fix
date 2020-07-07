@@ -1,7 +1,7 @@
 Zelantus Core integration/staging tree
 =====================================
-4.2.0
-https://zelantus.org
+
+https://zelantus.com
 
 What is Zelantus?
 ----------------

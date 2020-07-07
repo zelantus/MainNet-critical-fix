@@ -112,7 +112,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Zelantus"
-#define QAPP_ORG_DOMAIN "zelantus.org"
+#define QAPP_ORG_DOMAIN "zelantus.com"
 #define QAPP_APP_NAME_DEFAULT "Zelantus-Qt"
 #define QAPP_APP_NAME_TESTNET "Zelantus-Qt-testnet"
 

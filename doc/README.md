@@ -139,7 +139,7 @@ Zelantus repo's [root README](https://github.com/ZelantusProject/Zelantus/blob/m
 - Discuss on the [ZelantusTalk](https://www.zelantustalk.org/) forums, in the [Development & Technical Discussion board](https://www.zelantustalk.org/?forum=661517).
 - Discuss on chat [Discord](https://discord.gg/DUkcBst), [Telegram](https://t.me/ZelantusDev) or [Reddit](https://www.reddit.com/r/Zelantus/).
 - Find out more on the [Zelantus Wiki](https://zelantus.wiki/wiki/Zelantus_Wiki)
-- Visit the project home [Zelantus.org](https://zelantus.org)
+- Visit the project home [Zelantus.org](https://zelantus.com)
 
 ### Miscellaneous
 - [Assets Attribution](https://github.com/ZelantusProject/Zelantus/blob/master/doc/assets-attribution.md)

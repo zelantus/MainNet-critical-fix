@@ -1,10 +1,10 @@
 Zelantus Core version *0.15.0.1* is now available from:
 
-  <https://zelantus.org/bin/zelantus-core-0.15.0.1/>
+  <https://zelantus.com/bin/zelantus-core-0.15.0.1/>
 
 and
 
-  <https://zelantus.org/bin/zelantus-core-0.15.0.1/>
+  <https://zelantus.com/bin/zelantus-core-0.15.0.1/>
 
 This is a minor bug fix for 0.15.0.
 
@@ -14,7 +14,7 @@ Please report bugs using the issue tracker at GitHub:
 
 To receive security and update notifications, please subscribe to:
 
-  <https://zelantus.org/en/list/announcements/join/>
+  <https://zelantus.com/en/list/announcements/join/>
 
 How to Upgrade
 ==============

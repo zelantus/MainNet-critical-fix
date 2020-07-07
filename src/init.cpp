@@ -626,7 +626,7 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/ZelantusProject/Zelantus>";
-    const std::string URL_WEBSITE = "<https://zelantus.org>";
+    const std::string URL_WEBSITE = "<https://zelantus.com>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

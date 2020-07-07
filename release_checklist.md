@@ -20,9 +20,9 @@
 
 **Post Release :**
 
-  1. Update zelantus.org with correct popup version
+  1. Update zelantus.com with correct popup version
   
-  2. Update zelantus.org with correct release download urls for each platform (Windows, Linux, Mac)
+  2. Update zelantus.com with correct release download urls for each platform (Windows, Linux, Mac)
 
 **Build Process**
 

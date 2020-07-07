@@ -7,7 +7,7 @@ Source: https://github.com/ZelantusProject/Zelantus
 Files: *
 Copyright: 2009-2017, Zelantus Core Developers
 License: Expat
-Comment: The Zelantus Core Developers encompasses the current developers listed on zelantus.org,
+Comment: The Zelantus Core Developers encompasses the current developers listed on zelantus.com,
          as well as the numerous contributors to the project.
 
 Files: debian/*
