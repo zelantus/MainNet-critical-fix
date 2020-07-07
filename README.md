@@ -70,7 +70,7 @@ About Zelantus
 
 Algo: KawPow
 
-Block Reward: 50 KELS
+Block Reward: 50 ZELS
 
 Max Supply: 21MM
 
