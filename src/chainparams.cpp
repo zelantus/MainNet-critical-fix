@@ -33,7 +33,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     CBlock genesis;
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
-    genesis.nNonce   = nNonce;
+    genesis.nNonce64   = nNonce;
     genesis.nVersion = nVersion;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
     genesis.hashPrevBlock.SetNull();
@@ -54,8 +54,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 03/Jan/2018 Bitcoin is name of the game for new generation of firms";
-    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+    const char* pszTimestamp = "The Times 03/July/2020 The price of Bitcoin is 9000 dollars";
+    const CScript genesisOutputScript = CScript() << ParseHex("0459309d68d75b7e43910e5e0434961a704fddc1080d280e96f13f4c492f06ca68b30d30fb7d2ececf3a63e106b04b8523de197793350edc62a2bb8b193a1b91f2") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -123,71 +123,72 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.kawpowLimit = uint256S("0000000000ffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
-        consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
+        consensus.powLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000");
+        consensus.kawpowLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000"); // Estimated starting diff for first 180 kawpow blocks
+        consensus.nPowTargetTimespan = 10 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
 		consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1613; // Approx 80% of 2016
-        consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 7; // Approx 80% of 2016
+        consensus.nMinerConfirmationWindow = 10; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 1814;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 2016;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 9;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;  //Assets (RIP2)
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1540944000; // Oct 31, 2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1572480000; // Oct 31, 2019
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 1814;
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 2016;
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1594363753; // Oct 31, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 9;
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  // Assets (RIP5)
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1578920400; // UTC: Mon Jan 13 2020 13:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1610542800; // UTC: Wed Jan 13 2021 13:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideMinerConfirmationWindow = 2016;
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 8; // Approx 85% of 2016
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].bit = 8;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1588788000; // UTC: Wed May 06 2020 18:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 1620324000; // UTC: Thu May 06 2021 18:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideMinerConfirmationWindow = 2016;
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideRuleChangeActivationThreshold = 8; // Approx 85% of 2016
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].bit = 9;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1593453600; // UTC: Mon Jun 29 2020 18:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 1624989600; // UTC: Mon Jun 29 2020 18:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 2016;
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideRuleChangeActivationThreshold = 6; // Approx 70% of 2016
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 10;
 
         // The best chain should have at least this much work
-        consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000020d4ac871fb7009b63"); // Block 1186833
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000010"); // Block 1186833
 
         // By default assume that the signatures in ancestors of this block are valid. Block# 1040000
-        consensus.defaultAssumeValid = uint256S("0x0000000000000d4840d4de1f7d943542c2aed532bd5d6527274fc0142fa1a410"); // Block 1186833
+        consensus.defaultAssumeValid = uint256S("0x00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161"); // Block 1186833
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x52; // R
-        pchMessageStart[1] = 0x41; // A
-        pchMessageStart[2] = 0x56; // V
-        pchMessageStart[3] = 0x4e; // N
+        pchMessageStart[0] = 0x5a; // Z
+        pchMessageStart[1] = 0x45; // E
+        pchMessageStart[2] = 0x4c; // L
+        pchMessageStart[3] = 0x53; // S
         nDefaultPort = 9617;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1514999494, 25023712, 0x1e00ffff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1594104750, 4398, 0x1f00ffff, 4, 50 * COIN);
 
-        consensus.hashGenesisBlock = genesis.GetX16RHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0000006b444bc2f2ffe627be9d9e7e7a0730000870ef6eb6da46c8eae389df90"));
-        assert(genesis.hashMerkleRoot == uint256S("28ff00a867739a352523808d301f504bc4547699398d70faf2266a8bae5f3516"));
+        consensus.hashGenesisBlock = genesis.GetHash();
 
-        vSeeds.emplace_back("seed-zelantus.bitactivate.com", false);
-        vSeeds.emplace_back("seed-zelantus.zelantus.com", false);
-        vSeeds.emplace_back("seed-zelantus.zelantus.com", false);
+        assert(consensus.hashGenesisBlock == uint256S("00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161"));
+        assert(genesis.hashMerkleRoot == uint256S("b33064d9189d9df150c948310c419122b051b48307b8d3252de8520db4d25ee7"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,60);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
+        vSeeds.emplace_back("seed01.zelantus.com", false);
+        vSeeds.emplace_back("seed02.zelantus.com", false);
+        vSeeds.emplace_back("seed03.zelantus.com", false);
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,80);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,142);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -204,60 +205,55 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 535721, uint256S("0x000000000001217f58a594ca742c8635ecaaaf695d1a63f6ab06979f1c159e04")},
-                { 697376, uint256S("0x000000000000499bf4ebbe61541b02e4692b33defc7109d8f12d2825d4d2dfa0")},
-                { 740000, uint256S("0x00000000000027d11bf1e7a3b57d3c89acc1722f39d6e08f23ac3a07e16e3172")},
-                { 909251, uint256S("0x000000000000694c9a363eff06518aa7399f00014ce667b9762f9a4e7a49f485")},
-                { 1040000, uint256S("0x000000000000138e2690b06b1ddd8cf158c3a5cf540ee5278debdcdffcf75839")},
-                { 1186833, uint256S("0x0000000000000d4840d4de1f7d943542c2aed532bd5d6527274fc0142fa1a410")}
+                { 0, uint256S("0x00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161")}
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Zelantus chain
             // Stats as of 0x00000000000016ec03d8d93f9751323bcc42137b1b4df67e6a11c4394fd8e5ad window size 43200
-            1577939273, // * UNIX timestamp of last known number of transactions
-            6709969,    // * total number of transactions between genesis and that timestamp
+            1594104750, // * UNIX timestamp of last known number of transactions
+            0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.1       // * estimated number of transactions per second after that timestamp
         };
 
         /** ZELS Start **/
         // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
-        nIssueMsgChannelAssetBurnAmount = 100 * COIN;
-        nIssueQualifierAssetBurnAmount = 1000 * COIN;
-        nIssueSubQualifierAssetBurnAmount = 100 * COIN;
-        nIssueRestrictedAssetBurnAmount = 1500 * COIN;
-        nAddNullQualifierTagBurnAmount = .1 * COIN;
+        nIssueAssetBurnAmount = 5 * COIN;
+        nReissueAssetBurnAmount = 1 * COIN;
+        nIssueSubAssetBurnAmount = 1 * COIN;
+        nIssueUniqueAssetBurnAmount = 0.05 * COIN;
+        nIssueMsgChannelAssetBurnAmount = 1 * COIN;
+        nIssueQualifierAssetBurnAmount = 10 * COIN;
+        nIssueSubQualifierAssetBurnAmount = 1 * COIN;
+        nIssueRestrictedAssetBurnAmount = 15 * COIN;
+        nAddNullQualifierTagBurnAmount = 0.001 * COIN;
 
         // Burn Addresses
-        strIssueAssetBurnAddress = "RXissueAssetXXXXXXXXXXXXXXXXXhhZGt";
-        strReissueAssetBurnAddress = "RXReissueAssetXXXXXXXXXXXXXXVEFAWu";
-        strIssueSubAssetBurnAddress = "RXissueSubAssetXXXXXXXXXXXXXWcwhwL";
-        strIssueUniqueAssetBurnAddress = "RXissueUniqueAssetXXXXXXXXXXWEAe58";
-        strIssueMsgChannelAssetBurnAddress = "RXissueMsgChanneLAssetXXXXXXSjHvAY";
-        strIssueQualifierAssetBurnAddress = "RXissueQuaLifierXXXXXXXXXXXXUgEDbC";
-        strIssueSubQualifierAssetBurnAddress = "RXissueSubQuaLifierXXXXXXXXXVTzvv5";
-        strIssueRestrictedAssetBurnAddress = "RXissueRestrictedXXXXXXXXXXXXzJZ1q";
-        strAddNullQualifierTagBurnAddress = "RXaddTagBurnXXXXXXXXXXXXXXXXZQm5ya";
+        strIssueAssetBurnAddress = "ZXissueAssetXXXXXXXXXXXXXXXX2RvaQr";
+        strReissueAssetBurnAddress = "ZXReissueAssetXXXXXXXXXXXXXX11MaBj";
+        strIssueSubAssetBurnAddress = "ZXissueSubAssetXXXXXXXXXXXXWzJ9Rxk";
+        strIssueUniqueAssetBurnAddress = "ZXissueUniqueAssetXXXXXXXXXX4aGFnN";
+        strIssueMsgChannelAssetBurnAddress = "ZXissueMsgChanneLAssetXXXXXX4hkYjJ";
+        strIssueQualifierAssetBurnAddress = "ZXissueQuaLifierXXXXXXXXXXXWvaxzM4";
+        strIssueSubQualifierAssetBurnAddress = "ZXissueSubQuaLifierXXXXXXXXX5c35jw";
+        strIssueRestrictedAssetBurnAddress = "ZXissueRestrictedXXXXXXXXXXX92MMps";
+        strAddNullQualifierTagBurnAddress = "ZXaddTagBurnXXXXXXXXXXXXXXXWxCFnmH";
 
             //Global Burn Address
-        strGlobalBurnAddress = "RXBurnXXXXXXXXXXXXXXXXXXXXXXWUo9FV";
+        strGlobalBurnAddress = "ZXBurnXXXXXXXXXXXXXXXXXXXXXX7Rji9q";
 
         // DGW Activation
-        nDGWActivationBlock = 338778;
+        nDGWActivationBlock = 1;
 
         nMaxReorganizationDepth = 60; // 60 at 1 minute block timespan is +/- 60 minutes.
         nMinReorganizationPeers = 4;
         nMinReorganizationAge = 60 * 60 * 12; // 12 hours
 
-        nAssetActivationHeight = 435456; // Asset activated block height
-        nMessagingActivationBlock = 1092672; // Messaging activated block height
-        nRestrictedActivationBlock = 1092672; // Restricted activated block height
+        nAssetActivationHeight = 0; // Asset activated block height
+        nMessagingActivationBlock = 0; // Messaging activated block height
+        nRestrictedActivationBlock = 0; // Restricted activated block height
 
         nKAAAWWWPOWActivationTime = 1588788000; // UTC: Wed May 06 2020 18:00:00
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
@@ -279,8 +275,8 @@ public:
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
 
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.kawpowLimit = uint256S("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000");
+        consensus.kawpowLimit = uint256S("0000ffff00000000000000000000000000000000000000000000000000000000");
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -314,20 +310,20 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 2016;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000168050db560b4");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000010");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x000000006272208605c4df3b54d4d5515759105e7ffcb258e8cd8077924ffef1");
 
 
-        pchMessageStart[0] = 0x52; // R
-        pchMessageStart[1] = 0x56; // V
-        pchMessageStart[2] = 0x4E; // N
+        pchMessageStart[0] = 0x5a; // Z
+        pchMessageStart[1] = 0x55; // E
+        pchMessageStart[2] = 0x4c; // L
         pchMessageStart[3] = 0x54; // T
         nDefaultPort = 18770;
         nPruneAfterHeight = 1000;
 
-        uint32_t nGenesisTime = 1537466400;  // Thursday, September 20, 2018 12:00:00 PM GMT-06:00
+        uint32_t nGenesisTime = 1594104750;  // Thursday, September 20, 2018 12:00:00 PM GMT-06:00
 
         // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
 //        /////////////////////////////////////////////////////////////////
@@ -343,7 +339,7 @@ public:
 //        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
 //        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 //        for (int i=0;i<40000000;i++) {
-//            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 2, 5000 * COIN);
+//            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 2, 50 * COIN);
 //            //genesis.hashPrevBlock = TempHashHolding;
 //            // Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
 //            consensus.hashGenesisBlock = genesis.GetHash();
@@ -390,19 +386,21 @@ public:
 
 //        /////////////////////////////////////////////////////////////////
 
-        genesis = CreateGenesisBlock(nGenesisTime, 15615880, 0x1e00ffff, 2, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        genesis = CreateGenesisBlock(nGenesisTime, 31273, 0x1f00ffff, 2, 50 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+
+
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S("0x000000ecfc5e6324a079542221d00e10362bdc894d56500c414060eea8a3ad5a"));
-        assert(genesis.hashMerkleRoot == uint256S("28ff00a867739a352523808d301f504bc4547699398d70faf2266a8bae5f3516"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000054a9fb2e04d781490bb385a4c4b568ddd7be14f2d8858440f3a01b60fa1c"));
+        assert(genesis.hashMerkleRoot == uint256S("b33064d9189d9df150c948310c419122b051b48307b8d3252de8520db4d25ee7"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        vSeeds.emplace_back("seed-testnet-zelantus.bitactivate.com", false);
-        vSeeds.emplace_back("seed-testnet-zelantus.zelantus.com", false);
-        vSeeds.emplace_back("seed-testnet-zelantus.zelantus.com", false);
+        vSeeds.emplace_back("seed-testnet01.zelantus.com", false);
+        vSeeds.emplace_back("seed-testnet02.zelantus.com", false);
+        vSeeds.emplace_back("seed-testnet03.zelantus.com", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
@@ -422,33 +420,29 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                    { 225, uint256S("0x000003465e3e0167322eb8269ce91246bbc211e293bc5fbf6f0a0d12c1ccb363")},
-                    {223408, uint256S("0x000000012a0c09dd6456ab19018cc458648dec762b04f4ddf8ef8108eae69db9")},
-                    {232980, uint256S("0x000000007b16ae547fce76c3308dbeec2090cde75de74ab5dfcd6f60d13f089b")},
-                    {257610, uint256S("0x000000006272208605c4df3b54d4d5515759105e7ffcb258e8cd8077924ffef1")}
-            }
+                    { 0, uint256S("0x000054a9fb2e04d781490bb385a4c4b568ddd7be14f2d8858440f3a01b60fa1c")}            }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Zelantus chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-            1543633332, // * UNIX timestamp of last known number of transactions
-            146666,     // * total number of transactions between genesis and that timestamp
+            1594104750, // * UNIX timestamp of last known number of transactions
+            0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.02        // * estimated number of transactions per second after that timestamp
         };
 
         /** ZELS Start **/
         // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
-        nIssueMsgChannelAssetBurnAmount = 100 * COIN;
-        nIssueQualifierAssetBurnAmount = 1000 * COIN;
-        nIssueSubQualifierAssetBurnAmount = 100 * COIN;
-        nIssueRestrictedAssetBurnAmount = 1500 * COIN;
-        nAddNullQualifierTagBurnAmount = .1 * COIN;
+        nIssueAssetBurnAmount = 5 * COIN;
+        nReissueAssetBurnAmount = 1 * COIN;
+        nIssueSubAssetBurnAmount = 1 * COIN;
+        nIssueUniqueAssetBurnAmount = 0.05 * COIN;
+        nIssueMsgChannelAssetBurnAmount = 1 * COIN;
+        nIssueQualifierAssetBurnAmount = 10 * COIN;
+        nIssueSubQualifierAssetBurnAmount = 1 * COIN;
+        nIssueRestrictedAssetBurnAmount = 15 * COIN;
+        nAddNullQualifierTagBurnAmount = 0.001 * COIN;
 
         // Burn Addresses
         strIssueAssetBurnAddress = "n1issueAssetXXXXXXXXXXXXXXXXWdnemQ";
@@ -471,9 +465,9 @@ public:
         nMinReorganizationPeers = 4;
         nMinReorganizationAge = 60 * 60 * 12; // 12 hours
 
-        nAssetActivationHeight = 6048; // Asset activated block height
-        nMessagingActivationBlock = 10080; // Messaging activated block height
-        nRestrictedActivationBlock = 10080; // Restricted activated block height
+        nAssetActivationHeight = 0; // Asset activated block height
+        nMessagingActivationBlock = 0; // Messaging activated block height
+        nRestrictedActivationBlock = 0; // Restricted activated block height
 
         nKAAAWWWPOWActivationTime = 1585159200; //Wed Mar 25 2020 18:00:00 UTC
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
@@ -555,7 +549,7 @@ public:
 //        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
 //        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 //        for (int i=0;i<40000000;i++) {
-//            genesis = CreateGenesisBlock(1533751200, i, 0x207fffff, 2, 5000 * COIN);
+//            genesis = CreateGenesisBlock(1533751200, i, 0x1f00ffff, 2, 50 * COIN);
 //            //genesis.hashPrevBlock = TempHashHolding;
 //            consensus.hashGenesisBlock = genesis.GetHash();
 //
@@ -602,8 +596,10 @@ public:
 //        /////////////////////////////////////////////////////////////////
 
 
-        genesis = CreateGenesisBlock(1524179366, 1, 0x207fffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        genesis = CreateGenesisBlock(1594104750, 1, 0x207fffff, 4, 50 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+
+
 
         assert(consensus.hashGenesisBlock == uint256S("0x0b2c703dc93bb63a36c4e33b85be4855ddbca2ac951a7a0a29b8de0408200a3c "));
         assert(genesis.hashMerkleRoot == uint256S("0x28ff00a867739a352523808d301f504bc4547699398d70faf2266a8bae5f3516"));
@@ -637,15 +633,15 @@ public:
 
         /** ZELS Start **/
         // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
-        nIssueMsgChannelAssetBurnAmount = 100 * COIN;
-        nIssueQualifierAssetBurnAmount = 1000 * COIN;
-        nIssueSubQualifierAssetBurnAmount = 100 * COIN;
-        nIssueRestrictedAssetBurnAmount = 1500 * COIN;
-        nAddNullQualifierTagBurnAmount = .1 * COIN;
+        nIssueAssetBurnAmount = 5 * COIN;
+        nReissueAssetBurnAmount = 1 * COIN;
+        nIssueSubAssetBurnAmount = 1 * COIN;
+        nIssueUniqueAssetBurnAmount = 0.05 * COIN;
+        nIssueMsgChannelAssetBurnAmount = 1 * COIN;
+        nIssueQualifierAssetBurnAmount = 10 * COIN;
+        nIssueSubQualifierAssetBurnAmount = 1 * COIN;
+        nIssueRestrictedAssetBurnAmount = 15 * COIN;
+        nAddNullQualifierTagBurnAmount = 0.001 * COIN;
 
         // Burn Addresses
         strIssueAssetBurnAddress = "n1issueAssetXXXXXXXXXXXXXXXXWdnemQ";

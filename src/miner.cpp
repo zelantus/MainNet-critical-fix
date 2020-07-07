@@ -652,12 +652,12 @@ void static ZelantusMiner(const CChainParams& chainparams)
 
                         break;
                     }
-                    pblock->nNonce += 1;
+                    pblock->nNonce64 += 1;
                     nHashesDone += 1;
                     if (nHashesDone % 500000 == 0) {   //Calculate hashing speed
                         nHashesPerSec = nHashesDone / (((GetTimeMicros() - nMiningTimeStart) / 1000000) + 1);
                     } 
-                    if ((pblock->nNonce & 0xFF) == 0)
+                    if ((pblock->nNonce64 & 0xFF) == 0)
                         break;
                 }
 
@@ -666,7 +666,7 @@ void static ZelantusMiner(const CChainParams& chainparams)
                 // Regtest mode doesn't require peers
                 //if (vNodes.empty() && chainparams.MiningRequiresPeers())
                 //    break;
-                if (pblock->nNonce >= 0xffff0000)
+                if (pblock->nNonce64 >= 0xffff0000)
                     break;
                 if (mempool.GetTransactionsUpdated() != nTransactionsUpdatedLast && GetTime() - nStart > 60)
                     break;
