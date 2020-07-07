@@ -1,0 +1,6 @@
+usr/local/bin/zelantus-qt usr/bin
+share/pixmaps/zelantus32.xpm usr/share/pixmaps
+share/pixmaps/zelantus16.xpm usr/share/pixmaps
+share/pixmaps/zelantus128.png usr/share/pixmaps
+debian/zelantus-qt.desktop usr/share/applications
+debian/zelantus-qt.protocol usr/share/kde4/services/

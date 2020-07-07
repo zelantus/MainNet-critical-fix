@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Zelantus Core
+Comment=Connect to the Zelantus P2P Network
+Comment[de]=Verbinde mit dem Zelantus peer-to-peer Netzwerk
+Comment[fr]=Zelantus, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Zelantus, eşten eşe kriptografik sanal para birimi
+Exec=zelantus-qt %u
+Terminal=false
+Type=Application
+Icon=zelantus128
+MimeType=x-scheme-handler/zelantus;
+Categories=Office;Finance;

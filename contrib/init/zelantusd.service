@@ -1,0 +1,22 @@
+[Unit]
+Description=Zelantus's distributed currency daemon
+After=network.target
+
+[Service]
+User=zelantus
+Group=zelantus
+
+Type=forking
+PIDFile=/var/lib/zelantusd/zelantusd.pid
+ExecStart=/usr/bin/zelantusd -daemon -pid=/var/lib/zelantusd/zelantusd.pid \
+-conf=/etc/zelantus/zelantus.conf -datadir=/var/lib/zelantusd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

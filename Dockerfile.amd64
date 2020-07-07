@@ -1,0 +1,27 @@
+FROM amd64/ubuntu:latest
+
+MAINTAINER cade <cade.call@mediciventures.com>
+
+EXPOSE $RPCPORT
+
+EXPOSE $PORT
+
+RUN apt-get update && apt-get install -y bash net-tools && apt-get clean
+
+RUN useradd -ms /bin/bash zelantus
+
+RUN mkdir /etc/zelantus
+
+RUN mkdir /var/lib/zelantus
+
+RUN chown zelantus:zelantus /etc/zelantus /var/lib/zelantus
+
+WORKDIR /home/zelantus
+
+COPY --chown=zelantus:zelantus linux64/* /home/zelantus/
+
+COPY --chown=zelantus:zelantus run.sh /home/zelantus/
+
+USER zelantus
+
+CMD ["/home/zelantus/run.sh"]

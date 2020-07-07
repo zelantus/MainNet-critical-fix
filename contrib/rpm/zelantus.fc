@@ -1,0 +1,8 @@
+/usr/bin/zelantus-cli		--	gen_context(system_u:object_r:zelantus_exec_t,s0)
+/usr/sbin/zelantusd		--	gen_context(system_u:object_r:zelantus_exec_t,s0)
+/usr/lib(64)?/zelantus/zelantusd		--	gen_context(system_u:object_r:zelantus_exec_t,s0)
+
+/etc/zelantus(/.*)?		gen_context(system_u:object_r:zelantus_conf_t,s0)
+/var/lib/zelantus(/.*)?		gen_context(system_u:object_r:zelantus_var_lib_t,s0)
+
+(/var)?/run/zelantusd(/.*)?   gen_context(system_u:object_r:zelantus_var_run_t,s0)
