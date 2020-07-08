@@ -138,7 +138,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;  //Assets (RIP2)
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1540944000; // Oct 31, 2018
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1594363753; // Oct 31, 2019
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1594268760; // Oct 31, 2019
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 9;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  // Assets (RIP5)
@@ -158,10 +158,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 10;
 
         // The best chain should have at least this much work
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000010"); // Block 1186833
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000030003"); // Block 1186833
 
         // By default assume that the signatures in ancestors of this block are valid. Block# 1040000
-        consensus.defaultAssumeValid = uint256S("0x00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161"); // Block 1186833
+        consensus.defaultAssumeValid = uint256S("0x000025902f6f77f7a1feb8465ff8bce25f1de1f9d2971542f0e53d73d2dfc228"); // Block 1186833
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -175,17 +175,21 @@ public:
         nDefaultPort = 9617;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1594104750, 4398, 0x1f00ffff, 4, 50 * COIN);
+        genesis = CreateGenesisBlock(1594182361, 252680, 0x1f00ffff, 4, 50 * COIN);
 
 
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161"));
+        assert(consensus.hashGenesisBlock == uint256S("000025902f6f77f7a1feb8465ff8bce25f1de1f9d2971542f0e53d73d2dfc228"));
         assert(genesis.hashMerkleRoot == uint256S("b33064d9189d9df150c948310c419122b051b48307b8d3252de8520db4d25ee7"));
 
         vSeeds.emplace_back("seed01.zelantus.com", false);
         vSeeds.emplace_back("seed02.zelantus.com", false);
         vSeeds.emplace_back("seed03.zelantus.com", false);
+        vSeeds.emplace_back("explorer.zelantus.com", false);
+        vSeeds.emplace_back("explorer1.zelantus.com", false);
+        vSeeds.emplace_back("explorer2.zelantus.com", false);
+
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,80);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,142);
@@ -205,14 +209,17 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                { 0, uint256S("0x00008e6c215546c16786bf8fa769ed63ff0ed4f2a06260c4470af83e609ef161")}
+                { 0, uint256S("0x000025902f6f77f7a1feb8465ff8bce25f1de1f9d2971542f0e53d73d2dfc228")},
+{ 1, uint256S("0x0000b87ae44ef3d775a8069fdd756464544377137371995830e878f1f87f66ff")},
+{ 2, uint256S("0x0000cfceb4aa9ef115b3d474167ed40cac7c308b6c01dd75bce0e3c8df150b20")}
+
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Zelantus chain
             // Stats as of 0x00000000000016ec03d8d93f9751323bcc42137b1b4df67e6a11c4394fd8e5ad window size 43200
-            1594104750, // * UNIX timestamp of last known number of transactions
+            1594182361, // * UNIX timestamp of last known number of transactions
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.1       // * estimated number of transactions per second after that timestamp
