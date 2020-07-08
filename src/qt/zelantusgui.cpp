@@ -407,7 +407,7 @@ void ZelantusGUI::createActions()
 
     /** ZELS START */
     transferAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_transfer_selected", ":/icons/asset_transfer"), tr("&Transfer Token"), this);
-    transferAssetAction->setStatusTip(tr("Transfer assets to ZELS addresses"));
+    transferAssetAction->setStatusTip(tr("Transfer token to ZELS addresses"));
     transferAssetAction->setToolTip(transferAssetAction->statusTip());
     transferAssetAction->setCheckable(true);
     transferAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
@@ -415,7 +415,7 @@ void ZelantusGUI::createActions()
     tabGroup->addAction(transferAssetAction);
 
     createAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_create_selected", ":/icons/asset_create"), tr("&Create Token"), this);
-    createAssetAction->setStatusTip(tr("Create new main/sub/unique assets"));
+    createAssetAction->setStatusTip(tr("Create new main/sub/unique token"));
     createAssetAction->setToolTip(createAssetAction->statusTip());
     createAssetAction->setCheckable(true);
     createAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
@@ -423,7 +423,7 @@ void ZelantusGUI::createActions()
     tabGroup->addAction(createAssetAction);
 
     manageAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_manage_selected", ":/icons/asset_manage"), tr("&Manage Token"), this);
-    manageAssetAction->setStatusTip(tr("Manage assets you are the administrator of"));
+    manageAssetAction->setStatusTip(tr("Manage token you are the administrator of"));
     manageAssetAction->setToolTip(manageAssetAction->statusTip());
     manageAssetAction->setCheckable(true);
     manageAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
@@ -447,7 +447,7 @@ void ZelantusGUI::createActions()
     tabGroup->addAction(votingAction);
 
     restrictedAssetAction = new QAction(platformStyle->SingleColorIcon(":/icons/edit"), tr("&Restricted Token"), this);
-    restrictedAssetAction->setStatusTip(tr("Manage restricted assets"));
+    restrictedAssetAction->setStatusTip(tr("Manage restricted token"));
     restrictedAssetAction->setToolTip(restrictedAssetAction->statusTip());
     restrictedAssetAction->setCheckable(true);
 //    restrictedAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_9));
@@ -1502,22 +1502,22 @@ void ZelantusGUI::checkAssets()
     // Check that status of RIP2 and activate the assets icon if it is active
     if(AreAssetsDeployed()) {
         transferAssetAction->setDisabled(false);
-        transferAssetAction->setToolTip(tr("Transfer assets to ZELS addresses"));
+        transferAssetAction->setToolTip(tr("Transfer token to ZELS addresses"));
         createAssetAction->setDisabled(false);
-        createAssetAction->setToolTip(tr("Create new main/sub/unique assets"));
+        createAssetAction->setToolTip(tr("Create new main/sub/unique token"));
         manageAssetAction->setDisabled(false);
         }
     else {
         transferAssetAction->setDisabled(true);
-        transferAssetAction->setToolTip(tr("Assets not yet active"));
+        transferAssetAction->setToolTip(tr("Token not yet active"));
         createAssetAction->setDisabled(true);
-        createAssetAction->setToolTip(tr("Assets not yet active"));
+        createAssetAction->setToolTip(tr("Token not yet active"));
         manageAssetAction->setDisabled(true);
         }
 
     if (AreRestrictedAssetsDeployed()) {
         restrictedAssetAction->setDisabled(false);
-        restrictedAssetAction->setToolTip(tr("Manage restricted assets"));
+        restrictedAssetAction->setToolTip(tr("Manage restricted token"));
 
     } else {
         restrictedAssetAction->setDisabled(true);
