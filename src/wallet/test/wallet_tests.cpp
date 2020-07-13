@@ -313,8 +313,8 @@ BOOST_FIXTURE_TEST_SUITE(wallet_tests, WalletTestingSetup)
 
                 // picking 50 from 100 coins doesn't depend on the shuffle,
                 // but does depend on randomness in the stochastic approximation code
-                BOOST_CHECK(testWallet.SelectCoinsMinConf(50 * COIN, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
-                BOOST_CHECK(testWallet.SelectCoinsMinConf(50 * COIN, 1, 6, 0, vCoins, setCoinsRet2, nValueRet));
+                BOOST_CHECK(testWallet.SelectCoinsMinConf(5 * COIN, 1, 6, 0, vCoins, setCoinsRet, nValueRet));
+                BOOST_CHECK(testWallet.SelectCoinsMinConf(5 * COIN, 1, 6, 0, vCoins, setCoinsRet2, nValueRet));
                 BOOST_CHECK(!equal_sets(setCoinsRet, setCoinsRet2));
 
                 int fails = 0;
@@ -416,7 +416,7 @@ BOOST_FIXTURE_TEST_SUITE(wallet_tests, WalletTestingSetup)
             CWallet wallet;
             AddKey(wallet, coinbaseKey);
             BOOST_CHECK_EQUAL(oldTip, wallet.ScanForWalletTransactions(oldTip, nullptr));
-            BOOST_CHECK_EQUAL(wallet.GetImmatureBalance(), 50 * COIN);
+            BOOST_CHECK_EQUAL(wallet.GetImmatureBalance(), 5 * COIN);
         }
 
         // Verify importmulti RPC returns failure for a key whose creation time is
@@ -546,7 +546,7 @@ BOOST_FIXTURE_TEST_SUITE(wallet_tests, WalletTestingSetup)
         // credit amount is calculated.
         wtx.MarkDirty();
         wallet.AddKeyPubKey(coinbaseKey, coinbaseKey.GetPubKey());
-        BOOST_CHECK_EQUAL(wtx.GetImmatureCredit(), 50 * COIN);
+        BOOST_CHECK_EQUAL(wtx.GetImmatureCredit(), 5 * COIN);
     }
 
     static int64_t AddTx(CWallet &wallet, uint32_t lockTime, int64_t mockTime, int64_t blockTime)
@@ -680,7 +680,7 @@ BOOST_FIXTURE_TEST_SUITE(wallet_tests, WalletTestingSetup)
         BOOST_CHECK_EQUAL(list.begin()->second.size(), (uint64_t)1L);
 
         // Check initial balance from one mature coinbase transaction.
-        BOOST_CHECK_EQUAL(50 * COIN, wallet->GetAvailableBalance());
+        BOOST_CHECK_EQUAL(5 * COIN, wallet->GetAvailableBalance());
 
         // Add a transaction creating a change address, and confirm ListCoins still
         // returns the coin associated with the change address underneath the

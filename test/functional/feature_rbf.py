@@ -170,7 +170,7 @@ class ReplaceByFeeTest(ZelantusTestFramework):
     def test_doublespend_chain(self):
         """Doublespend of a long chain"""
 
-        initial_n_value = 50 * COIN
+        initial_n_value = 5 * COIN
         tx0_outpoint = make_utxo(self.nodes[0], initial_n_value)
 
         prevout = tx0_outpoint
@@ -210,7 +210,7 @@ class ReplaceByFeeTest(ZelantusTestFramework):
     def test_doublespend_tree(self):
         """Doublespend of a big tree of transactions"""
 
-        initial_n_value = 50 * COIN
+        initial_n_value = 5 * COIN
         tx0_outpoint = make_utxo(self.nodes[0], initial_n_value)
 
         def branch(prevout, initial_value, max_txs, tree_width=5, fee_val=0.0001 * COIN, _total_txs=None):

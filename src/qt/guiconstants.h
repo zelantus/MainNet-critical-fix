@@ -51,9 +51,9 @@ static const bool DEFAULT_SPLASHSCREEN = true;
 /* Zelantus light orange */
 #define COLOR_LIGHT_ORANGE QColor("#f79433")
 /* Zelantus dark blue */
-#define COLOR_DARK_BLUE QColor("#475eaa")
+#define COLOR_DARK_BLUE QColor("#f6ae01")
 /* Zelantus light blue */
-#define COLOR_LIGHT_BLUE QColor("#5874cf")
+#define COLOR_LIGHT_BLUE QColor("#ffcc00")
 /* Zelantus asset text */
 #define COLOR_ASSET_TEXT QColor(255, 255, 255)
 /* Zelantus shadow color - light mode */
