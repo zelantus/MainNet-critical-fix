@@ -72,7 +72,7 @@ Algo: KawPow
 
 Block Reward: 5 ZELS
 
-Max Supply: 21MM
+Max Supply: 21 Million
 
 Block Time: 1 Minute
 
