@@ -70,7 +70,7 @@ About Zelantus
 
 Algo: KawPow
 
-Block Reward: 50 ZELS
+Block Reward: 5 ZELS
 
 Max Supply: 21MM
 
@@ -80,8 +80,8 @@ Block Time: 1 Minute
 Zelantus Downloads
 ----------------
 
-Windows:
+Windows:https://github.com/zelantus/MainNet-critical-fix/releases/download/v4.2/zelantus-mainnet-win64.zip
 
-Linux:
+Linux:https://github.com/zelantus/MainNet-critical-fix/releases/download/v4.2/zelantus-mainnet-linux_x64.tar
 
-Android:
+Android:https://github.com/zelantus/MainNet-critical-fix/releases/download/v4.2/app-zels-release.apk
