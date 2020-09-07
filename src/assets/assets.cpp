@@ -3589,7 +3589,7 @@ void GetAllMyAssets(CWallet* pwallet, std::vector<std::string>& names, int nMinC
         return;
 
     std::map<std::string, std::vector<COutput> > mapAssets;
-    pwallet->AvailableAssets(mapAssets, true, nullptr, 1, MAX_MONEY, MAX_MONEY, 0, nMinConf); // Set the mincof, set the rest to the defaults
+    pwallet->AvailableAssets(mapAssets, true, nullptr, 1, MAX_MONEY_ASSET, MAX_MONEY_ASSET, 0, nMinConf); // Set the mincof, set the rest to the defaults
 
     for (auto item : mapAssets) {
         bool isOwner = IsAssetNameAnOwner(item.first);
@@ -3758,7 +3758,7 @@ bool GetAllMyAssetBalances(std::map<std::string, std::vector<COutput> >& outputs
         return false;
 
     // Get the map of assetnames to outputs
-    vpwallets[0]->AvailableAssets(outputs, true, nullptr, 1, MAX_MONEY, MAX_MONEY, 0, confirmations);
+    vpwallets[0]->AvailableAssets(outputs, true, nullptr, 1, MAX_MONEY_ASSET, MAX_MONEY_ASSET, 0, confirmations);
 
     // Loop through all pairs of Asset Name -> vector<COutput>
     for (const auto& pair : outputs) {
@@ -3784,7 +3784,7 @@ bool GetMyAssetBalance(const std::string& name, CAmount& balance, const int& con
 
     // Get the map of assetnames to outputs
     std::map<std::string, std::vector<COutput> > outputs;
-    vpwallets[0]->AvailableAssets(outputs, true, nullptr, 1, MAX_MONEY, MAX_MONEY, 0, confirmations);
+    vpwallets[0]->AvailableAssets(outputs, true, nullptr, 1, MAX_MONEY_ASSET, MAX_MONEY_ASSET, 0, confirmations);
 
     // Loop through all pairs of Asset Name -> vector<COutput>
     if (outputs.count(name)) {
@@ -5325,8 +5325,8 @@ bool CheckNewAsset(const CNewAsset& asset, std::string& strError)
         return false;
     }
 
-    if (asset.nAmount > MAX_MONEY) {
-        strError = _("Invalid parameter: asset amount greater than max money: ") + std::to_string(MAX_MONEY / COIN);
+    if (asset.nAmount > MAX_MONEY_ASSET) {
+        strError = _("Invalid parameter: asset amount greater than max money: ") + std::to_string(MAX_MONEY_ASSET / COIN);
         return false;
     }
 
@@ -5402,7 +5402,7 @@ bool CheckReissueAsset(const CReissueAsset& asset, std::string& strError)
 {
     strError = "";
 
-    if (asset.nAmount < 0 || asset.nAmount >= MAX_MONEY) {
+    if (asset.nAmount < 0 || asset.nAmount >= MAX_MONEY_ASSET) {
         strError = _("Unable to reissue asset: amount must be 0 or larger");
         return false;
     }
@@ -5466,7 +5466,7 @@ bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& 
         return false;
     }
 
-    if (prev_asset.nAmount + reissue_asset.nAmount > MAX_MONEY) {
+    if (prev_asset.nAmount + reissue_asset.nAmount > MAX_MONEY_ASSET) {
         strError = _("Unable to reissue asset: asset_name '") + reissue_asset.strName +
                    _("' the amount trying to reissue is to large");
         return false;
@@ -5551,7 +5551,7 @@ bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& 
             return false;
         }
 
-        if (prev_asset.nAmount + reissue_asset.nAmount > MAX_MONEY) {
+        if (prev_asset.nAmount + reissue_asset.nAmount > MAX_MONEY_ASSET) {
             strError = _("Unable to reissue asset: asset_name '") + reissue_asset.strName +
                        _("' the amount trying to reissue is to large");
             return false;
